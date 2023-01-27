@@ -13,8 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.condition.PatternsRequestCondition;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -72,7 +72,7 @@ public class HTTPMonitoringInterceptor implements HandlerInterceptor {
     private String getMatchingURLPattern(HttpServletRequest httpServletRequest) {
         String res = "";
         for (PatternsRequestCondition pattern : getUrlPatterns()) {
-            if (pattern.getMatchingCondition(httpServletRequest) != null &&
+            if (pattern != null && pattern.getMatchingCondition(httpServletRequest) != null &&
                     !httpServletRequest.getServletPath().equals("/error")) {
                 res = pattern.getMatchingCondition(httpServletRequest).getPatterns().iterator().next();
                 break;

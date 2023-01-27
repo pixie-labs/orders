@@ -3,13 +3,14 @@ package works.weave.socks.orders.config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
 
@@ -17,7 +18,9 @@ import java.net.Proxy;
 public final class RestProxyTemplate {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Autowired RestTemplate restTemplate;
+    @Autowired
+    @Lazy
+    RestTemplate restTemplate;
 
     @Bean
     public RestTemplate restTemplate() {

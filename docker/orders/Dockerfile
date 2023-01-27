@@ -1,10 +1,10 @@
-FROM weaveworksdemos/msd-java:jre-latest
+FROM openjdk:18-jdk-alpine 
 
 WORKDIR /usr/src/app
 COPY *.jar ./app.jar
 
-RUN	chown -R ${SERVICE_USER}:${SERVICE_GROUP} ./app.jar
+RUN chown -R root:root ./app.jar
 
-USER ${SERVICE_USER}
+USER root
 
-ENTRYPOINT ["/usr/local/bin/java.sh","-jar","./app.jar", "--port=80"]
+ENTRYPOINT ["java","-jar","./app.jar", "--port=8080"]
